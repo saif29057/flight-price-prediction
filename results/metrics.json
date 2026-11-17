@@ -1,0 +1,43 @@
+{
+  "best_model": "xgboost",
+  "features": [
+    "distance_km",
+    "duration_hours",
+    "stops",
+    "departure_hour",
+    "month",
+    "seats_available",
+    "airline_code",
+    "origin_country",
+    "dest_country",
+    "cabin_class",
+    "fare_type",
+    "flight_category"
+  ],
+  "metrics": {
+    "linear_regression": {
+      "mae": 182.26964911315542,
+      "rmse": 465.6508629566218,
+      "mape": 0.3461116294970633,
+      "r2": 0.7165229937234054,
+      "train_seconds": 0.66
+    },
+    "random_forest": {
+      "mae": 138.42597996243794,
+      "rmse": 334.21770506908945,
+      "mape": 0.2493958026303024,
+      "r2": 0.8539653483923788,
+      "train_seconds": 32.38
+    },
+    "xgboost": {
+      "mae": 120.10559451181032,
+      "rmse": 286.681528243831,
+      "mape": 0.2159636462775966,
+      "r2": 0.8925524702811635,
+      "train_seconds": 3.24
+    }
+  },
+  "n_rows": 100000,
+  "test_size": 0.2,
+  "seed": 42
+}
