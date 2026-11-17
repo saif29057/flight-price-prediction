@@ -24,7 +24,7 @@ Prices in this dataset include a random seasonal factor, so part of the variance
 ## Architecture
 
 ```
-code/dataset_extended.py ──► data/flights_dataset_100000.csv ──► code/EDA.ipynb
+code/dataset_extended.py ──► data/flights_dataset_100000.csv.xz ──► code/EDA.ipynb
                                          │
                          flyprice/train.py (LR · RF · XGBoost, MLflow) ──► models/best_model.joblib
                                          │
@@ -106,7 +106,7 @@ cd frontend && npm install && npm run dev               # UI at http://localhost
 ```
 
 Optional: `export GROQ_API_KEY=...` to let an LLM write the assistant's answers.
-To regenerate the dataset (needs internet for OpenFlights): `python code/dataset_extended.py`.
+To regenerate the dataset (needs internet for OpenFlights): `python code/dataset_extended.py`, then `xz -9 flights_dataset_100000.csv` and move it to `data/`.
 
 ## Data
 
