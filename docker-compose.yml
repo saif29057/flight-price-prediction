@@ -1,0 +1,27 @@
+# docker compose up --build
+# Frontend: http://localhost:3000   API: http://localhost:8000/docs   MLflow: http://localhost:5000
+services:
+  backend:
+    build: .
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.18.0
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:////mlflow/mlflow.db
+    volumes:
+      - mlflow-data:/mlflow
+    ports:
+      - "5000:5000"
+
+volumes:
+  mlflow-data:
