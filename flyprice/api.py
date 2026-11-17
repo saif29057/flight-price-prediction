@@ -22,7 +22,7 @@ from flyprice.recommend import FlightCatalog
 
 ROOT = Path(__file__).resolve().parent.parent
 MODELS_DIR = Path(os.environ.get("MODELS_DIR", ROOT / "models"))
-DATA_PATH = Path(os.environ.get("DATA_PATH", ROOT / "data" / "flights_dataset_100000.csv"))
+DATA_PATH = Path(os.environ.get("DATA_PATH", ROOT / "data" / "flights_dataset_100000.csv.xz"))
 
 app = FastAPI(title="FlyPrice API", version="1.0.0",
               description="Flight price prediction, recommendations and a RAG travel assistant.")

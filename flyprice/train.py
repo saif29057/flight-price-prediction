@@ -73,7 +73,7 @@ def evaluate(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default=str(ROOT / "data" / "flights_dataset_100000.csv"))
+    parser.add_argument("--data", default=str(ROOT / "data" / "flights_dataset_100000.csv.xz"))
     parser.add_argument("--sample", type=int, default=0, help="use only N rows (0 = all)")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--out", default=str(ROOT / "models"))
@@ -109,7 +109,7 @@ def main() -> None:
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    joblib.dump(best_model, out / "best_model.joblib")
+    joblib.dump(best_model, out / "best_model.joblib", compress=("xz", 9))  # keeps the file small enough for GitHub
     meta = {"best_model": best_name, "features": FEATURES, "metrics": results,
             "n_rows": len(df), "test_size": 0.2, "seed": args.seed}
     (out / "metadata.json").write_text(json.dumps(meta, indent=2))
